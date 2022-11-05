@@ -98,14 +98,11 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer(0,10000);
-  setTimer(1,500);
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	led_blinky();
 	fsm_simple_buttons_run();
   }
   /* USER CODE END 3 */

@@ -7,14 +7,6 @@
 
 #include "fsm_midterm.h"
 
-void led_blinky() {
-	// Cu sau 0.5s, den RED_LED se chuyen doi trang thai (chu ki sang tat se la 1s)
-	if (timer_flag[1] == 1) {
-		setTimer(1, 500);
-		HAL_GPIO_TogglePin(RED_GPIO_Port, RED_Pin);
-	}
-}
-
 void fsm_simple_buttons_run() {
 	switch(status) { 					// Xet bien the hien trang thai hien gio cua finite state machine
 
