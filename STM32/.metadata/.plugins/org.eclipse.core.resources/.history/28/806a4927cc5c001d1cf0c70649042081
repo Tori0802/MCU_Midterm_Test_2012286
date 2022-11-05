@@ -1,0 +1,44 @@
+/*
+ * fsm_manual.c
+ *
+ *  Created on: Nov 5, 2022
+ *      Author: dell
+ */
+
+#include "fsm_manual.h"
+
+void fsm_manual_run() {
+	switch(status) {
+	case INIT_RESET:
+		counter = 0;
+		display7SEG(counter);
+		status = CURRENT;
+		break;
+	case ADD:
+		counter++;
+		if (counter > 9) counter = 0;
+		display7SEG(counter);
+		status = CURRENT;
+		break;
+	case SUB:
+		counter--;
+		if (counter < 0) counter = 9;
+		display7SEG(counter);
+		status = CURRENT;
+		break;
+	case CURRENT:
+		display7SEG(counter);
+		if (isButtonPressed(0) == 1) {
+			status = INIT_RESET;
+		}
+		if (isButtonPressed(1) == 1) {
+			status = ADD;
+		}
+		if (isButtonPressed(2) == 1) {
+			status = SUB;
+		}
+		break;
+	default:
+		break;
+	}
+}

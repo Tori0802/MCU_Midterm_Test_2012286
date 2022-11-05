@@ -1,0 +1,54 @@
+/*
+ * check.c
+ *
+ *  Created on: Sep 30, 2022
+ *      Author: Admin
+ */
+
+#include "fsm_automatic.h"
+
+void fsm_automatic_run(){
+	switch(mode){
+	case INIT:
+		mode = MODE1;
+		initnormal();
+		break;
+
+	case MODE1:
+		runnormal();
+		if (isButton1Pressed() == 1) {
+			mode = MODE2;
+			initmode2();
+		}
+		break;
+
+	case MODE2:
+		setTimer(250);
+		runmode2();
+		if (isButton1Pressed() == 1) {
+			mode = MODE3;
+			initmode3();
+		}
+		break;
+
+	case MODE3:
+		setTimer(250);
+		runmode3();
+		if (isButton1Pressed() == 1) {
+			mode = MODE4;
+			initmode4();
+		}
+		break;
+
+	case MODE4:
+		setTimer(250);
+		runmode4();
+		if (isButton1Pressed() == 1) {
+			initnormal();
+			mode = MODE1;
+		}
+		break;
+	default:
+		break;
+	}
+}

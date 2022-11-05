@@ -1,0 +1,2 @@
+fsm_midterm.c:12:6:led_blinky	8	static
+fsm_midterm.c:20:6:fsm_simple_buttons_run	8	static

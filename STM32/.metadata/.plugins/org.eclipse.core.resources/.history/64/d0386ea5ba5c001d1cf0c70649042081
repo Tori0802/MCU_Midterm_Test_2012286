@@ -1,0 +1,60 @@
+/*
+ * check.c
+ *
+ *  Created on: Sep 30, 2022
+ *      Author: Admin
+ */
+
+#include "fsm_automatic.h"
+
+void fsm_automatic_run(){
+	switch(status){
+	case INIT:
+		HAL_GPIO_WritePin(RED_GPIO_Port, RED_Pin, SET);
+		HAL_GPIO_WritePin(YELLOW_GPIO_Port, YELLOW_Pin, SET);
+		HAL_GPIO_WritePin(GREEN_GPIO_Port, GREEN_Pin, SET);
+		status = AUTO_RED;
+		break;
+	case AUTO_RED:
+		HAL_GPIO_WritePin(RED_GPIO_Port, RED_Pin, RESET);
+		HAL_GPIO_WritePin(YELLOW_GPIO_Port, YELLOW_Pin, SET);
+		HAL_GPIO_WritePin(GREEN_GPIO_Port, GREEN_Pin, SET);
+		if (button0_flag == 1) {
+			status = AUTO_GREEN;
+			button0_flag = 0;
+		}
+		if (button1_flag == 1) {
+			status = AUTO_YELLOW;
+			button1_flag = 0;
+		}
+		break;
+	case AUTO_YELLOW:
+		HAL_GPIO_WritePin(RED_GPIO_Port, RED_Pin, SET);
+		HAL_GPIO_WritePin(YELLOW_GPIO_Port, YELLOW_Pin, RESET);
+		HAL_GPIO_WritePin(GREEN_GPIO_Port, GREEN_Pin, SET);
+		if (button0_flag == 1) {
+			status = AUTO_RED;
+			button0_flag = 0;
+		}
+		if (button1_flag == 1) {
+			status = AUTO_GREEN;
+			button1_flag = 0;
+		}
+		break;
+	case AUTO_GREEN:
+		HAL_GPIO_WritePin(RED_GPIO_Port, RED_Pin, SET);
+		HAL_GPIO_WritePin(YELLOW_GPIO_Port, YELLOW_Pin, SET);
+		HAL_GPIO_WritePin(GREEN_GPIO_Port, GREEN_Pin, RESET);
+		if (button0_flag == 1) {
+			status = AUTO_YELLOW;
+			button0_flag = 0;
+		}
+		if (button1_flag == 1) {
+			status = AUTO_RED;
+			button1_flag = 0;
+		}
+		break;
+	default:
+		break;
+	}
+}

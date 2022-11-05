@@ -1,0 +1,23 @@
+/*
+ * global.h
+ *
+ *  Created on: Sep 30, 2022
+ *      Author: Admin
+ */
+
+#ifndef INC_GLOBAL_H_
+#define INC_GLOBAL_H_
+
+#define INIT_RESET		0
+#define ADD				1
+#define SUB				2
+#define CURRENT			3
+
+#define MAN_BUT0		11
+#define MAN_BUT1		12
+#define MAN_BUT2		13
+
+extern int status;
+extern int counter;
+
+#endif /* INC_GLOBAL_H_ */

@@ -1,0 +1,23 @@
+/*
+ * global.h
+ *
+ *  Created on: Sep 30, 2022
+ *      Author: Admin
+ */
+
+#ifndef INC_GLOBAL_H_
+#define INC_GLOBAL_H_
+
+#define INIT			0
+#define MODE1			1
+#define MODE2			2
+#define MODE3			3
+#define MODE4			4
+
+extern int mode;
+
+extern int RED;
+extern int AMBER;
+extern int GREEN;
+
+#endif /* INC_GLOBAL_H_ */

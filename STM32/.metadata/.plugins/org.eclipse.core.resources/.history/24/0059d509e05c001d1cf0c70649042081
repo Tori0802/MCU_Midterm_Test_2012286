@@ -1,0 +1,103 @@
+/*
+ * fsm_manual.c
+ *
+ *  Created on: Nov 5, 2022
+ *      Author: dell
+ */
+
+#include "fsm_manual.h"
+
+void fsm_simple_buttons_run() {
+	switch(status) {
+	case INIT_RESET:
+		counter = 0;
+		display7SEG(counter);
+		status = CURRENT;
+		if (isButtonPressed(0) == 1) {
+			status = INIT_RESET;
+			setTimer(0, 1000);
+		}
+		if (isButtonPressed(1) == 1) {
+			status = ADD;
+			setTimer(0, 1000);
+		}
+		if (isButtonPressed(2) == 1) {
+			status = SUB;
+			setTimer(0, 1000);
+		}
+		break;
+	case ADD:
+		counter++;
+		if (counter > 9) counter = 0;
+		display7SEG(counter);
+		status = CURRENT;
+		if (isButtonPressed(0) == 1) {
+			status = INIT_RESET;
+			setTimer(0, 1000);
+		}
+		if (isButtonPressed(1) == 1) {
+			status = ADD;
+			setTimer(0, 1000);
+		}
+		if (isButtonPressed(2) == 1) {
+			status = SUB;
+			setTimer(0, 1000);
+		}
+		break;
+	case SUB:
+		counter--;
+		if (counter < 0) counter = 9;
+		display7SEG(counter);
+		status = CURRENT;
+		if (isButtonPressed(0) == 1) {
+			status = INIT_RESET;
+			setTimer(0, 1000);
+		}
+		if (isButtonPressed(1) == 1) {
+			status = ADD;
+			setTimer(0, 1000);
+		}
+		if (isButtonPressed(2) == 1) {
+			status = SUB;
+			setTimer(0, 1000);
+		}
+		break;
+	case CURRENT:
+		display7SEG(counter);
+		if (isButtonPressed(0) == 1) {
+			status = INIT_RESET;
+			setTimer(0, 1000);
+		}
+		if (isButtonPressed(1) == 1) {
+			status = ADD;
+			setTimer(0, 1000);
+		}
+		if (isButtonPressed(2) == 1) {
+			status = SUB;
+			setTimer(0, 1000);
+		}
+		if (timer_flag[0] == 1) {
+			status = AUTO;
+		}
+		break;
+	case AUTO:
+		display7SEG(--counter);
+		setTimer(0,1000);
+		status = CURRENT;
+		if (isButtonPressed(0) == 1) {
+			status = INIT_RESET;
+			setTimer(0, 1000);
+		}
+		if (isButtonPressed(1) == 1) {
+			status = ADD;
+			setTimer(0, 1000);
+		}
+		if (isButtonPressed(2) == 1) {
+			status = SUB;
+			setTimer(0, 1000);
+		}
+		break;
+	default:
+		break;
+	}
+}

@@ -1,0 +1,51 @@
+/*
+ * check.c
+ *
+ *  Created on: Sep 30, 2022
+ *      Author: Admin
+ */
+
+#include "fsm_automatic.h"
+
+void fsm_automatic_run(){
+	switch(status) {
+		case AUTO:
+			if (counter);
+			display7SEG(counter);
+			status = CURRENT_PRESS;
+			if (isButtonPressed(0) == 1) {
+				status = INIT_RESET;
+				setTimer[0](1000);
+			}
+			if (isButtonPressed(1) == 1) {
+				status = ADD;
+				setTimer[0](1000);
+			}
+			if (isButtonPressed(2) == 1) {
+				status = SUB;
+				setTimer[0](1000);
+			}
+			break;
+		case ADD:
+			counter++;
+			if (counter > 9) counter = 0;
+			display7SEG(counter);
+			status = CURRENT_PRESS;
+			if (isButtonPressed(0) == 1) {
+				status = INIT_RESET;
+				setTimer[0](1000);
+			}
+			if (isButtonPressed(1) == 1) {
+				status = ADD;
+				setTimer[0](1000);
+			}
+			if (isButtonPressed(2) == 1) {
+				status = SUB;
+				setTimer[0](1000);
+			}
+			break;
+		default:
+			break;
+		}
+
+}
