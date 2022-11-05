@@ -19,18 +19,12 @@ void fsm_simple_buttons_run() {
 		display7SEG(counter);			// Hien thi gia tri counter ra LED 7 doan
 		if (isButtonPressed(0) == 1) { 	// Neu nut RES duoc nhan, chuyen trang thai status sang RESET_STATE, dong thoi ta dat lai setTimer cho dieu kien chuyen sang trang thai AUTO sang 10s
 			status = RESET_STATE;
-			setTimer(0, 10000);			// 10s
 		}
 		if (isButtonPressed(1) == 1) { 	// Neu nut INC duoc nhan, chuyen trang thai status sang ADD, dong thoi ta dat lai setTimer cho dieu kien chuyen sang trang thai AUTO sang 10s
 			status = ADD;
-			setTimer(0, 10000);			// 10s
 		}
 		if (isButtonPressed(2) == 1) {	// Neu nut DEC duoc nhan, chuyen trang thai status sang SUB, dong thoi ta dat lai setTimer cho dieu kien chuyen sang trang thai AUTO sang 10s
 			status = SUB;
-			setTimer(0, 10000);			// 10s
-		}
-		if (timer_flag[0] == 1) {		// Neu sau 10s khong co nut nao duoc nhan, ta chuyen sang trang thai AUTO
-			status = AUTO;
 		}
 		break;
 
@@ -52,26 +46,6 @@ void fsm_simple_buttons_run() {
 		if (counter < 0) counter = 9;
 		display7SEG(counter);			// Hien thi gia tri counter ra LED 7 doan
 		status = CURRENT;				// Chuyen trang thai "status" ve CURRENT
-		break;
-
-	case AUTO: // AUTO
-		if (counter > 0) counter--;		// Neu gia tri "counter" > 0, thi gia tri "counter" tiep theo se giam di 1 don vi
-										// Con neu "counter" == 0, thì "counter" se duoc giu nguyen
-		display7SEG(counter);			// Hien thi gia tri counter ra LED 7 doan
-		setTimer(0,1000);				// setTimer cho nhung lan tu dong thay doi "counter" tiep theo la 1s
-		status = CURRENT;				// Neu trong qua trinh nay khong xay ra nhan nut nao, thi "status" se duoc chuyen ve CURRENT
-		if (isButtonPressed(0) == 1) {	// Neu nut RES duoc nhan, chuyen trang thai status sang RESET_STATE, dong thoi ta dat lai setTimer cho dieu kien chuyen sang trang thai AUTO thanh 10s
-			status = RESET_STATE;
-			setTimer(0, 10000);
-		}
-		if (isButtonPressed(1) == 1) {	// Neu nut INC duoc nhan, chuyen trang thai status sang ADD, dong thoi ta dat lai setTimer cho dieu kien chuyen sang trang thai AUTO thanh 10s
-			status = ADD;
-			setTimer(0, 10000);
-		}
-		if (isButtonPressed(2) == 1) {	// Neu nut DEC duoc nhan, chuyen trang thai status sang SUB, dong thoi ta dat lai setTimer cho dieu kien chuyen sang trang thai AUTO thanh 10s
-			status = SUB;
-			setTimer(0, 10000);
-		}
 		break;
 
 	default:

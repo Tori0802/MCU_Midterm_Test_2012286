@@ -5,7 +5,9 @@
  *      Author: dell
  */
 
-#include "fsm_midterm.h"
+#include <fsm_midterm.h>
+
+int auto_flag = 0;
 
 void fsm_simple_buttons_run() {
 	switch(status) { 					// Xet bien the hien trang thai hien gio cua finite state machine
@@ -73,7 +75,6 @@ void fsm_simple_buttons_run() {
 			setTimer(0, 10000);
 		}
 		break;
-
 	default:
 		break;
 	}
