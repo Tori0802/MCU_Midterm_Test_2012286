@@ -1,10 +1,10 @@
-00:35:10 **** Incremental Build of configuration Debug for project Midterm ****
+01:03:04 **** Incremental Build of configuration Debug for project Midterm ****
 make -j4 all 
 arm-none-eabi-size   Midterm.elf 
    text	   data	    bss	    dec	    hex	filename
-   7936	     80	   1680	   9696	   25e0	Midterm.elf
+   7992	     80	   1688	   9760	   2620	Midterm.elf
 Finished building: default.size.stdout
  
 
-00:35:10 Build Finished. 0 errors, 0 warnings. (took 596ms)
+01:03:04 Build Finished. 0 errors, 0 warnings. (took 858ms)
 

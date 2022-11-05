@@ -16,7 +16,6 @@
 #define PRESSED_STATE RESET
 
 #define NUM_OF_BUTTONS 3						// Number of Buttons to use
-#define TIMEOUTFORLONGKEYPRESS 3000/TIME_CYCLE	// So chu ki dem nguoc cho 3s (thoi gian dieu kien cho longkeypress)
 
 int isButtonPressed(int index);
 
