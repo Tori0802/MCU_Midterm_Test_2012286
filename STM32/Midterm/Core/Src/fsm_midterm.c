@@ -8,9 +8,9 @@
 #include "fsm_midterm.h"
 
 void led_blinky() {
-	// Cu sau 0.5s, den RED_LED se chuyen doi trang thai (chu ki sang tat se la 1s)
+	// Cu sau 1s, den RED_LED se chuyen doi trang thai
 	if (timer_flag[1] == 1) {
-		setTimer(1, 500);
+		setTimer(1, 1000);
 		HAL_GPIO_TogglePin(RED_GPIO_Port, RED_Pin);
 	}
 }

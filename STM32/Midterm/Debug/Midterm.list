@@ -469,14 +469,14 @@ void display7SEG(int counter) {
 void led_blinky() {
  80003f4:	b580      	push	{r7, lr}
  80003f6:	af00      	add	r7, sp, #0
-	// Cu sau 0.5s, den RED_LED se chuyen doi trang thai (chu ki sang tat se la 1s)
+	// Cu sau 1s, den RED_LED se chuyen doi trang thai
 	if (timer_flag[1] == 1) {
  80003f8:	4b07      	ldr	r3, [pc, #28]	; (8000418 <led_blinky+0x24>)
  80003fa:	685b      	ldr	r3, [r3, #4]
  80003fc:	2b01      	cmp	r3, #1
  80003fe:	d108      	bne.n	8000412 <led_blinky+0x1e>
-		setTimer(1, 500);
- 8000400:	f44f 71fa 	mov.w	r1, #500	; 0x1f4
+		setTimer(1, 1000);
+ 8000400:	f44f 717a 	mov.w	r1, #1000	; 0x3e8
  8000404:	2001      	movs	r0, #1
  8000406:	f000 fa09 	bl	800081c <setTimer>
 		HAL_GPIO_TogglePin(RED_GPIO_Port, RED_Pin);
@@ -798,8 +798,8 @@ int main(void)
  8000606:	f242 7110 	movw	r1, #10000	; 0x2710
  800060a:	2000      	movs	r0, #0
  800060c:	f000 f906 	bl	800081c <setTimer>
-  setTimer(1,500);
- 8000610:	f44f 71fa 	mov.w	r1, #500	; 0x1f4
+  setTimer(1,1000);
+ 8000610:	f44f 717a 	mov.w	r1, #1000	; 0x3e8
  8000614:	2001      	movs	r0, #1
  8000616:	f000 f901 	bl	800081c <setTimer>
   while (1)
